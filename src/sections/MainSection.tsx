@@ -2,10 +2,10 @@ const MainSection = () => {
     return (
         <div className='bg-[url("/main-img.png")] bg-bottom bg-cover w-full h-screen flex flex-col'>
             <div className="flex flex-col items-center text-center text-light max-w-1/2 m-auto">
-                <span className='uppercase text-4xl font-semibol'>Discover</span>
+                <span className='uppercase text-3xl font-medium opacity-90 tracking-widest'>Discover</span>
                 <h1 className='uppercase text-9xl font-bold'>KUBAN</h1>
-                <p className='text-center text-2xl font-normal mt-6 '>
-                    Would you explore natur paradise in the world, let’s find the best destination in world with us
+                <p className='text-center text-2xl font-normal mt-6 opacity-90'>
+                    Ready to experience the best of the Krasnodar region? <br /> Find your place to enjoy with us
                 </p>
             </div>
 
