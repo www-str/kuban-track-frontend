@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Button from "../components/ui/Button";
 
 const profile = {
@@ -15,18 +15,18 @@ const ProfilePage = () => {
     window.scrollTo(0, 0);
   }, [])
 
-  const [token, setToken] = useState('');
+  // const [token, setToken] = useState('');
 
-  const auth = async () => {
-    const res = await axios.get('http://meowmur.ru/api/login?login=логин&password=пароль', {
-      headers: {
-        "Content-Type": 'application/json'
-      }
-    });
-    if (res.data["ok"]["token"]) {
-      setToken(res.data["ok"]["token"])
-    }
-  }
+  // const auth = async () => {
+  //   const res = await axios.get('http://meowmur.ru/api/login?login=логин&password=пароль', {
+  //     headers: {
+  //       "Content-Type": 'application/json'
+  //     }
+  //   });
+  //   if (res.data["ok"]["token"]) {
+  //     setToken(res.data["ok"]["token"])
+  //   }
+  // }
 
   const fetchProfile = async () => {
     // const res = await axios.get('http://meowmur.ru/api/profile', {
@@ -39,9 +39,9 @@ const ProfilePage = () => {
     console.log(res.data.ok);
   }
 
-  useEffect(() => {
-    auth();
-  }, [])
+  // useEffect(() => {
+  //   auth();
+  // }, [])
 
   return (
     <div className='w-full h-screen flex flex-col items-center justify-center gap-4'>
