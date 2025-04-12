@@ -23,20 +23,20 @@ const ProfilePage = () => {
         "Content-Type": 'application/json'
       }
     });
-    setToken(res.data["ok"]["token"])
-    console.log(token);
+    if (res.data["ok"]["token"]) {
+      setToken(res.data["ok"]["token"])
+    }
   }
 
   const fetchProfile = async () => {
-
-    console.log("Tok: " + token);
-    const res = await axios.get('http://meowmur.ru/api/profile', {
-      headers: {
-        "Content-Type": 'application/json',
-        "Authorization": "Bearer " + token
-      }
-    });
-    console.log(res);
+    // const res = await axios.get('http://meowmur.ru/api/profile', {
+    //   headers: {
+    //     "Content-Type": 'application/json',
+    //     "Authorization": "Bearer " + token
+    //   }
+    // });
+    const res = await axios.get('http://meowmur.ru/api/get_rubrics');
+    console.log(res.data.ok);
   }
 
   useEffect(() => {

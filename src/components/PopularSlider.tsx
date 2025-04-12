@@ -49,19 +49,19 @@ function PopularSlider() {
 
 
     const settings = {
-        dots: true,
+        // dots: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 4000,
-        cssEase: "linear",
+        speed: 3000,
+        autoplaySpeed: 6000,
+        cssEase: "ease",
     };
 
     return (
         <div className="slider-container max-w-full mx-auto">
-            <Slider {...settings} className="">
+            <Slider {...settings}  className="">
                 {places.map((place, index) => (
                     <PlaceItem key={index} place={place} />
                 ))}

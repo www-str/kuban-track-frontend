@@ -11,19 +11,9 @@ const SearchSection = () => {
 
       <div className="flex items-center justify-center gap-2">
         {cities.map(city => (
-          <Button>{city}</Button>
+          <Button key={city}>{city}</Button>
         ))}
       </div>
-
-      {/* <input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        type="text"
-        placeholder='Search...'
-        className='w-full max-w-6xl px-9 py-6
-                  border-2 border-blue rounded-3xl
-                  text-light outline-none'
-      /> */}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
 import Logo from '../components/ui/Logo'
 
@@ -31,9 +31,13 @@ const links = [
 
 const Header = () => {
     const navigate = useNavigate();
+    const location = useLocation()
 
     const handleNavigate = (link: string) => {
-        if (link.includes("#")) {
+        if (link.includes("#") && location.pathname !== "/") {
+            navigate("/");
+            return;
+        } else if (link.includes("#")) {
             document.querySelector(link)?.scrollIntoView({
                 behavior: 'smooth',
                 inline: 'center'
@@ -61,7 +65,8 @@ const Header = () => {
                     ))}
                     <Button onclick={() => handleNavigate('/profile')}>Sign Up</Button>
                 </div>
-            </header></>
+            </header>
+        </>
     )
 }
 

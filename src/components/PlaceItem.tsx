@@ -8,7 +8,7 @@ interface IPlaceItem {
 const PlaceItem: React.FC<IPlaceItem> = ({ place }) => {
     return (
         <div
-            className="h-full flex flex-col gap-2 justify-end p-10 rounded-2xl"
+            className="h-full flex flex-col gap-2 justify-end p-10 m-5 rounded-2xl"
             style={{
                 backgroundImage: `url(${place.image})`,
                 backgroundSize: "cover",
