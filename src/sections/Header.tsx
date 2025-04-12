@@ -16,12 +16,12 @@ const links = [
     //     path: '/map',
     // },
     {
-        name: "Culture",
-        path: "/culture",
-    },
-    {
         name: 'Events',
         path: '/events',
+    },
+    {
+        name: "Culture",
+        path: "/culture",
     },
     {
         name: 'Profile',

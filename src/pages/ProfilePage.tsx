@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/ui/Button";
 
 const profile = {
@@ -11,24 +11,29 @@ const profile = {
 
 const ProfilePage = () => {
 
-  let token = ""
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
+  const [token, setToken] = useState('');
+
   const auth = async () => {
-    const res = await axios.get('https://221ad6cc-809a-411f-b13e-59c7220e3e75.tunnel4.com/api/login?login=логин&password=пароль', {
+    const res = await axios.get('http://meowmur.ru/api/login?login=логин&password=пароль', {
       headers: {
         "Content-Type": 'application/json'
       }
     });
-    token = res.data["ok"]["token"]
+    setToken(res.data["ok"]["token"])
     console.log(token);
   }
 
   const fetchProfile = async () => {
 
     console.log("Tok: " + token);
-    const res = await axios.get('https://221ad6cc-809a-411f-b13e-59c7220e3e75.tunnel4.com/api/profile', {
+    const res = await axios.get('http://meowmur.ru/api/profile', {
       headers: {
         "Content-Type": 'application/json',
-        "JWT": token
+        "Authorization": "Bearer " + token
       }
     });
     console.log(res);

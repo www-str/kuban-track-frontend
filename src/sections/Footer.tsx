@@ -1,6 +1,6 @@
 import Logo from "../components/ui/Logo";
 
-export const team = ['Elizabeth', 'Artyom', 'Mickhail', 'Georgii'];
+export const team = ['Elizabeth', 'Artyom', 'Mickhail', 'Georgiy'];
 
 const Footer = () => {
     return (
