@@ -34,7 +34,7 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation()
 
-    const [isMobileShow, setIsMobileShow] = useState(true);
+    const [isMobileShow, setIsMobileShow] = useState(false);
 
     const handleNavigate = (link: string) => {
         if (link.includes("#") && location.pathname !== "/") {
@@ -57,7 +57,7 @@ const Header = () => {
 
     return (
         <>
-            <header className='fixed top-6 left-14 right-14 z-20 flex items-center justify-between p-2 rounded-4xl backdrop-blur-2x bg-blue50'>
+            <header className='fixed top-6 left-6 lg:left-14 right-6 lg:right-14 z-20 flex items-center justify-between p-2 rounded-4xl backdrop-blur-2x bg-blue50'>
                 <div className="w-14 ml-2" onClick={() => handleNavigate("/")}>
                     <Logo />
                 </div>
@@ -81,10 +81,8 @@ const Header = () => {
             </header>
             {isMobileShow && (
                 <>
-                    <div className="fixed bg-none inset-0 z-10" onClick={() => setIsMobileShow(false)}>
-
-                    </div>
-                    <div className="fixed top-30 left-14 right-14 z-20 p-10 rounded-4xl backdrop-blur bg-blue50 flex flex-col items-center gap-10">
+                    <div className="fixed bg-none inset-0 z-10" onClick={() => setIsMobileShow(false)} />
+                    <div className="fixed top-28 left-6 right-6 z-20 p-10 rounded-4xl backdrop-blur bg-blue50 flex flex-col items-center gap-10">
                         {links.map((link, index) => (
                             <button
                                 key={index}
