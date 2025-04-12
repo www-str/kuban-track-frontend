@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage"
 import ProfilePage from "./pages/ProfilePage"
 import EventsPage from "./pages/EventsPage"
 import Header from "./sections/Header"
+import Footer from "./sections/Footer"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/events" element={<EventsPage />} />
       </Routes>
+      <Footer />
     </main>
   )
 }

@@ -4,7 +4,9 @@
 @theme {
   --color-light: #F7FFF7;
   --color-dark: #343434;
+  --color-dark50: rgba(52, 52, 52, 0.5);
   --color-blue: #2F3061;
+  --color-blue50: rgba(47, 48, 97, 0.5);
   --color-green: #255B2D;
   --color-pink: #A31A5F;
 }
