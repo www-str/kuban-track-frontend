@@ -1,56 +1,50 @@
-import axios from "axios"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useStore } from "../store/useStore";
+import { useNavigate } from "react-router-dom";
+import { profileType } from "../store/types";
 import Button from "../components/ui/Button";
-
-const profile = {
-  login: "логин",
-  points: "3",
-  achievements: [{ "id": 0, "name": "имя", "points": 0, "description": "За что и почему" }]
-}
 
 
 const ProfilePage = () => {
+  const { isAuth, getProfile, logout } = useStore();
+  const navigate = useNavigate();
+  const [profileInfo, setProfileInfo] = useState<profileType | null>(null);
+
+  const fetchProfile = async () => {
+    if (isAuth) {
+      const res = await getProfile();
+      setProfileInfo(res);
+    }
+  }
+
+  const handleLogout = () => {
+    logout();
+    location.reload();
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
-  // const [token, setToken] = useState('');
+  useEffect(() => {
+    if (!isAuth) {
+      navigate('/login');
+    }
+  }, [])
 
-  // const auth = async () => {
-  //   const res = await axios.get('http://meowmur.ru/api/login?login=логин&password=пароль', {
-  //     headers: {
-  //       "Content-Type": 'application/json'
-  //     }
-  //   });
-  //   if (res.data["ok"]["token"]) {
-  //     setToken(res.data["ok"]["token"])
-  //   }
-  // }
-
-  const fetchProfile = async () => {
-    // const res = await axios.get('http://meowmur.ru/api/profile', {
-    //   headers: {
-    //     "Content-Type": 'application/json',
-    //     "Authorization": "Bearer " + token
-    //   }
-    // });
-    const res = await axios.get('http://meowmur.ru/api/get_rubrics');
-    console.log(res.data.ok);
-  }
-
-  // useEffect(() => {
-  //   auth();
-  // }, [])
+  useEffect(() => {
+    fetchProfile();
+  }, [])
 
   return (
     <div className='w-full h-screen flex flex-col items-center justify-center gap-4'>
       <h3 className='font-bold text-4xl text-dark'>Profile</h3>
       <div className="">
-        <h4>{profile.login}</h4>
-        <span>Number of points: {profile.points}</span>
+        <h4>{profileInfo?.login}</h4>
+        <span>Number of points: {profileInfo?.points}</span>
       </div>
-      <Button onclick={fetchProfile}>Click</Button>
+
+      <Button onclick={handleLogout}>Logout</Button>
     </div>
   )
 }

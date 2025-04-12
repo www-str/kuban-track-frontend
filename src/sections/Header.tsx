@@ -58,7 +58,7 @@ const Header = () => {
                         <button
                             key={index}
                             onClick={() => handleNavigate(link.path)}
-                            className='text-lg font-semibold text-light cursor-pointer transition hover:opacity-80'
+                            className=' text-lg font-semibold text-light cursor-pointer transition hover:opacity-80'
                         >
                             {link.name}
                         </button>
