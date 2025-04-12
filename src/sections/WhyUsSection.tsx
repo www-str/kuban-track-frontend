@@ -1,6 +1,6 @@
 const WhyUsSection = () => {
     return (
-        <div className='w-full max-h-screen px-14 bg-light py-28 grid grid-cols-2 grid-rows-2 gap-8'>
+        <div className='w-full max-h-screen px-14 bg-light py-28 grid grid-cols-2 grid-rows-2 gap-8' id="whyUs">
             <img src="/main-img.png" alt="why us image" className='h-full w-full object-cover rounded-4xl' />
             <img src="/main-img.png" alt="why us image" className='h-full w-full object-cover rounded-4xl' />
             <img src="/main-img.png" alt="why us image" className='h-full w-full object-cover rounded-4xl' />

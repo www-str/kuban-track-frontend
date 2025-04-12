@@ -4,7 +4,7 @@ export const team = ['Elizabeth', 'Artyom', 'Mickhail', 'Georgii'];
 
 const Footer = () => {
     return (
-        <div className='mt-18 w-full px-14 py-16 lg:max-h-12 flex flex-col lg:flex-row items-center gap-6 justify-between rounded-t-4xl backdrop-blur-2x bg-black'>
+        <div className='w-full px-14 py-16 lg:max-h-12 flex flex-col lg:flex-row items-center gap-6 justify-between rounded-t-4xl backdrop-blur-2x bg-black'>
             <div className="w-14 ml-2">
                 <Logo />
             </div>

@@ -4,6 +4,7 @@ import ProfilePage from "./pages/ProfilePage"
 import EventsPage from "./pages/EventsPage"
 import Header from "./sections/Header"
 import Footer from "./sections/Footer"
+import CulturePage from "./pages/CulturePage"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/events" element={<EventsPage />} />
+        <Route path="/culture" element={<CulturePage />} />
       </Routes>
       <Footer />
     </main>
