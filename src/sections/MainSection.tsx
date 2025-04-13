@@ -1,12 +1,45 @@
+import { motion } from "motion/react"
+
 const MainSection = () => {
     return (
         <div className='bg-[url("/main-img.png")] bg-bottom bg-cover w-full h-screen flex flex-col'>
             <div className="flex flex-col items-center text-center text-light m-auto px-6">
-                <span className='uppercase text-xl lg:text-3xl font-medium opacity-90 tracking-widest'>Discover</span>
-                <h1 className='uppercase text-7xl lg:text-9xl font-bold'>KUBAN</h1>
-                <p className='text-center text-lg lg:text-2xl font-normal mt-3 lg:mt-6 opacity-90'>
+                <motion.span
+                    initial={{
+                        opacity: 0
+                    }}
+                    animate={{
+                        opacity: 1,
+                        transition: { duration: 4 }
+                    }}
+                    className='uppercase text-xl lg:text-3xl font-medium opacity-90 tracking-widest'
+                >
+                    Discover
+                </motion.span>
+                <motion.h1
+                    className='uppercase text-7xl lg:text-9xl font-bold'
+                    initial={{
+                        y: "-200%",
+                        opacity: 0
+                    }}
+                    animate={{
+                        y: 0,
+                        opacity: 1,
+                        transition: { duration: 1 }
+                    }}
+                >KUBAN</motion.h1>
+                <motion.p
+                    initial={{
+                        opacity: 0
+                    }}
+                    animate={{
+                        opacity: 1,
+                        transition: { duration: 4 }
+                    }}
+                    className='text-center text-lg lg:text-2xl font-normal mt-3 lg:mt-6 opacity-90'
+                >
                     Ready to experience the best of the Krasnodar region? <br /> Find your place to enjoy with us
-                </p>
+                </motion.p>
             </div>
 
             <div className="mb-10 mx-auto animate-bounce">

@@ -35,7 +35,7 @@ const EventsPage = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-light px-6 lg:px-14 py-40 flex flex-col gap-12" id="culturalNav">
+    <div className="w-full min-h-screen bg-light px-6 lg:px-14 py-30 md:py-40 flex flex-col gap-12" id="culturalNav">
       <h3 className='font-bold text-4xl'>Events</h3>
 
       <div className="flex flex-col gap-5 border border-blue rounded-2xl p-12">

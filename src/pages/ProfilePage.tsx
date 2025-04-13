@@ -4,12 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { profileType } from "../store/types";
 import Button from "../components/ui/Button";
 
-// const Achievements = [
-//   { id: 0, name: "имя1", points: 10, description: "За что и fsaпочdf saf asddsf safddddsafему За что и fsaпочdf saf asddsf safddddsafему За что и fsaпочdf saf asddsf safddddsafему" },
-//   { id: 11, name: "имя2", points: 20, description: "За что и почему" },
-//   { id: 2, name: "имя3", points: 440, description: "За чdsadadто и почему" },
-// ]
-
 const ProfilePage = () => {
   const { isAuth, getProfile, logout } = useStore();
   const navigate = useNavigate();
@@ -19,7 +13,6 @@ const ProfilePage = () => {
     if (isAuth) {
       const res = await getProfile();
       setProfileInfo(res);
-      console.log(res);
     }
   }
 
@@ -48,18 +41,18 @@ const ProfilePage = () => {
         <h3 className='font-bold text-6xl'>Profile</h3>
         <Button onclick={handleLogout}>Logout</Button>
       </div>
-      <div className="flex items-center gap-6 w-full ">
-        <div className="w-full flex justify-between items-center bg-blue50 p-10 rounded-4xl">
+      <div className="flex items-center flex-col md:flex-row gap-6 w-full ">
+        <div className="w-full flex justify-between items-center bg-blue50 p-5 md:p-10 rounded-3xl md:rounded-4xl">
           <span className="text-2xl font-medium ">Login: </span>
           <span className="text-4xl font-medium text-light">{profileInfo?.login}</span>
         </div>
-        <div className="w-full flex justify-between items-center bg-blue50 p-10 rounded-4xl">
+        <div className="w-full flex justify-between items-center bg-blue50 p-5 md:p-10 rounded-3xl md:rounded-4xl">
           <span className="text-2xl font-medium ">Number of points: </span>
           <span className="text-4xl font-medium text-light">{profileInfo?.points}</span>
         </div>
       </div>
 
-      <h4 className='font-bold text-3xl mr-auto mt-20'>Achievements</h4>
+      <h4 className='font-bold text-3xl mr-auto mt-10 md:mt-20'>Achievements</h4>
 
       {profileInfo?.achievements.length ? (
         <div className="grid grid-cols-2 grid-rows-2 gap-6">

@@ -3,6 +3,7 @@ import Button from '../components/ui/Button'
 import Logo from '../components/ui/Logo'
 import { useState } from 'react'
 import { useStore } from '../store/useStore'
+import { motion } from "motion/react"
 
 const links = [
     {
@@ -62,7 +63,18 @@ const Header = () => {
 
     return (
         <>
-            <header className='fixed top-6 left-6 lg:left-14 right-6 lg:right-14 z-20 flex items-center justify-between p-2 rounded-4xl backdrop-blur-2x bg-blue50'>
+
+            <motion.header
+                initial={{
+                    y: -100,
+                    opacity: 0
+                }}
+                animate={{
+                    y: 0,
+                    opacity: 1,
+                    transition: { duration: 1 }
+                }}
+                className='fixed top-6 left-6 lg:left-14 right-6 lg:right-14 z-20 flex items-center justify-between p-2 rounded-4xl backdrop-blur-2x bg-blue50'>
                 <div className="w-14 ml-2" onClick={() => handleNavigate("/")}>
                     <Logo />
                 </div>
@@ -87,11 +99,22 @@ const Header = () => {
                         <span className='w-full h-1 rounded-2xl bg-light' />
                     </button>
                 </div>
-            </header>
+            </motion.header>
+
             {isMobileShow && (
                 <>
                     <div className="fixed bg-none inset-0 z-10" onClick={() => setIsMobileShow(false)} />
-                    <div className="fixed top-28 left-6 right-6 z-20 p-10 rounded-4xl backdrop-blur bg-blue50 flex flex-col items-center gap-10">
+                    <motion.div
+                        initial={{
+                            y: -100,
+                            opacity: 0
+                        }}
+                        animate={{
+                            y: 0,
+                            opacity: 1,
+                            transition: { duration: 0.3 }
+                        }}
+                        className="fixed top-28 left-6 right-6 z-20 p-10 rounded-4xl backdrop-blur bg-blue50 flex flex-col items-center gap-10">
                         {links.map((link, index) => (
                             <button
                                 key={index}
@@ -101,9 +124,10 @@ const Header = () => {
                                 {link.name}
                             </button>
                         ))}
-                    </div>
+                    </motion.div>
                 </>
-            )}
+            )
+            }
 
         </>
     )
