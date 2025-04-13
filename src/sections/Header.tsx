@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
 import Logo from '../components/ui/Logo'
 import { useState } from 'react'
+import { useStore } from '../store/useStore'
 
 const links = [
     {
@@ -24,22 +25,26 @@ const links = [
         name: "Culture",
         path: "/culture",
     },
-    {
-        name: 'Profile',
-        path: '/profile',
-    },
+    // {
+    //     name: 'Profile',
+    //     path: '/profile',
+    // },
 ]
 
 const Header = () => {
     const navigate = useNavigate();
-    const location = useLocation()
+    const location = useLocation();
 
+    const { isAuth } = useStore();
     const [isMobileShow, setIsMobileShow] = useState(false);
 
     const handleNavigate = (link: string) => {
         if (link.includes("#") && location.pathname !== "/") {
             navigate("/");
             return;
+        } else if (location.pathname === link) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setIsMobileShow(false);
         } else if (link.includes("#")) {
             document.querySelector(link)?.scrollIntoView({
                 behavior: 'smooth',
@@ -71,7 +76,11 @@ const Header = () => {
                             {link.name}
                         </button>
                     ))}
-                    <Button onclick={() => handleNavigate('/profile')}>Sign Up</Button>
+                    {isAuth ? (
+                        <Button onclick={() => handleNavigate('/profile')}>Profile</Button>
+                    ) : (
+                        <Button onclick={() => handleNavigate('/login')}>Sign In</Button>
+                    )}
                     <button onClick={() => setIsMobileShow(!isMobileShow)} className='flex flex-col justify-between gap-1 w-10 h-6 mr-4 lg:hidden'>
                         <span className='w-full h-1 rounded-2xl bg-light' />
                         <span className='w-full h-1 rounded-2xl bg-light' />

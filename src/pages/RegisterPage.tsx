@@ -13,10 +13,10 @@ const RegisterPage = () => {
 
   const handleRegister = async () => {
     if (login !== '' || password !== '') {
-      register({ login, password });
-      navigate('/login');
+      await register({ login, password });
+      navigate('/login/?reg=true');
     }
-  }
+  }  
 
   return (
     <div className='w-full h-screen flex flex-col items-center justify-center gap-6'>

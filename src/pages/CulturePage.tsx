@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
 const CulturePage = () => {
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
+
     return (
         <div className='w-full min-h-20 bg-light px-4 py-12 flex justify-center items-start' id="culturalNav">
             <div className='max-w-6xl w-full bg-white rounded-2xl shadow-lg px-8 py-10 mt-18 md:px-16'>
