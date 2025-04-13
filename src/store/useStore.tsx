@@ -50,7 +50,7 @@ export const useStore = create<useStoreType>((set, get) => ({
             });
             if (res.data.ok) {
                 return res.data.ok; 
-                
+
             }
         } catch (e) {
             console.error(e);
@@ -74,8 +74,8 @@ export const useStore = create<useStoreType>((set, get) => ({
                     q: query,
                 }
             });
-            if (res.data) {
-                return res.data;
+            if (res.data.ok) {
+                return res.data.ok;
             }
         } catch (e) {
             console.error(e);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../store/useStore";
-import { placeType } from "../store/types";
+import { placeType, rubricsType } from "../store/types";
 import Button from "../components/ui/Button";
 import { cities } from "../utils/data";
 
@@ -8,7 +8,7 @@ const EventsPage = () => {
   const { isAuth, getPlaces, getRubrics, setAchievement } = useStore();
 
   const [events, setEvents] = useState<placeType[]>([]);
-  const [rubrics, setRubrics] = useState<string[]>([]);
+  const [rubrics, setRubrics] = useState<rubricsType[]>([]);
 
   const urlParams = new URLSearchParams(window.location.search);
   const [city, setCity] = useState<string>(urlParams.get('city') || '');
@@ -51,11 +51,11 @@ const EventsPage = () => {
           <div className="flex items-center justify-center flex-wrap gap-2">
             {rubrics.map((rubric, index) => (
               <Button
-                key={`${rubric}-${index}`}
-                onclick={() => setQuery(rubric)}
-                classname={`${query === rubric ? "opacity-90" : ""} w-full sm:w-fit`}
+                key={`${rubric.title}-${index}`}
+                onclick={() => setQuery(rubric.content)}
+                classname={`${query === rubric.content ? "opacity-90" : ""} w-full sm:w-fit`}
               >
-                {rubric}
+                {rubric.title}
               </Button>
             ))}
           </div>

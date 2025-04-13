@@ -41,6 +41,11 @@ type achievementType = {
     description: string;
 }
 
+export type rubricsType = {
+    title: string;
+    content: string;
+}
+
 interface IState {
     token: string | null;
     isAuth: boolean;
@@ -51,7 +56,7 @@ interface IAction {
     register: ({ login, password }: authProps) => Promise<string>;
     logout: () => void;
     getProfile: () => Promise<profileType>;
-    getRubrics: () => Promise<string[]>;
+    getRubrics: () => Promise<rubricsType[]>;
     getPlaces: ({ city, query }: findPlaceType) => Promise<placeType[]>;
     getAchievements: () => Promise<achievementType[]>;
     setAchievement: (id: string) => Promise<string>;

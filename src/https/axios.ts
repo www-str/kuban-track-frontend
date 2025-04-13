@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'http://meowmur.ru/api',
+    baseURL: 'https://meowmur.ru/api',
     timeout: 1000,
     headers: {
         "Content-Type": 'application/json',
