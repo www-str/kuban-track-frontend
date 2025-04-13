@@ -5,7 +5,7 @@ import Button from "../components/ui/Button";
 import { cities } from "../utils/data";
 
 const EventsPage = () => {
-  const { getPlaces, getRubrics } = useStore();
+  const { isAuth, getPlaces, getRubrics, setAchievement } = useStore();
 
   const [events, setEvents] = useState<placeType[]>([]);
   const [rubrics, setRubrics] = useState<string[]>([]);
@@ -31,6 +31,13 @@ const EventsPage = () => {
     if (city && query) {
       const res = await getPlaces({ city, query });
       setEvents(res);
+    }
+  }
+
+  const handleVisited = async (id: string) => {
+    if (isAuth) {
+      const res = await setAchievement(id);
+      console.log(res);
     }
   }
 
@@ -62,9 +69,9 @@ const EventsPage = () => {
         <div className="flex items-center justify-center flex-wrap gap-2">
           {cities.map((item, index) => (
             <Button
-            key={`${item}-${index}`}
-            onclick={() => setCity(item)}
-            classname={`${city === item ? "opacity-90" : ""} w-full sm:w-fit`}
+              key={`${item}-${index}`}
+              onclick={() => setCity(item)}
+              classname={`${city === item ? "opacity-90" : ""} w-full sm:w-fit`}
             >
               {item}
             </Button>
@@ -80,6 +87,7 @@ const EventsPage = () => {
             <h4 className="text-2xl font-semibold text-dark">{event.name}</h4>
             <p className="text-blue text-lg overflow-hidden">{event.purpose_name}</p>
             <p className="text-blue text-lg overflow-hidden">{event.address_name}</p>
+            <Button onclick={() => handleVisited(event.id)}>Viseted</Button>
           </div>
         ))}
       </div>

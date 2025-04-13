@@ -90,4 +90,19 @@ export const useStore = create<useStoreType>((set, get) => ({
             console.error(e);
         }
     },
+    setAchievement: async (id) => {
+        try {
+            const res = await axios.get('/eran_achievement', {
+                params: { id },
+                headers: {
+                    "Authorization": `Bearer ${get().token}`,
+                }
+            });
+            if (res.data.ok) {
+                return res.data.ok;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    },
 }))

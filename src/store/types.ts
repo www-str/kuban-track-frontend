@@ -54,6 +54,7 @@ interface IAction {
     getRubrics: () => Promise<string[]>;
     getPlaces: ({ city, query }: findPlaceType) => Promise<placeType[]>;
     getAchievements: () => Promise<achievementType[]>;
+    setAchievement: (id: string) => Promise<string>;
 }
 
 export type useStoreType = IState & IAction;
