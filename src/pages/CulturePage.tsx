@@ -44,22 +44,22 @@ const CulturePage = () => {
                 for access to cultural assets and participation in cultural life.
             </p>
 
-            <div className="flex flex-col md:flex-row gap-8 md:my-8">
-                <div className="flex flex-col w-full md:w-2/4 justify-between gap-12 border-2 border-blue rounded-2xl p-8 md:p-16">
+            <div className="flex flex-col lg:flex-row gap-8 max-h-fit lg:mt-8 ">
+                <div className="flex flex-col h-fit w-full lg:w-2/4 justify-start gap-18 border-2 border-blue rounded-2xl p-8 md:p-16">
                     {info.map((infoItem, index) => (
                         <div className="" key={index}>
-                            <h4 className='text-4xl font-black text-dark text-center md:text-start mb-3'>
+                            <h4 className='text-4xl font-black text-dark text-center lg:text-start mb-3'>
                                 {infoItem.title}
                             </h4>
                             <ul className='flex flex-col gap-2'>
                                 {infoItem.items.map((item, idx) => (
-                                    <li key={idx} className="text-lg font-medium text-center md:text-start">{item}</li>
+                                    <li key={idx} className="text-lg font-medium text-center lg:text-start">{item}</li>
                                 ))}
                             </ul>
                         </div>
                     ))}
                 </div>
-                <div className="h-full w-full md:max-w-2/4 rounded-xl overflow-hidden shadow-md border-2 border-blue">
+                <div className="w-full max-h-[787px] lg:max-h-none lg:max-w-2/4 rounded-xl overflow-hidden shadow-md border-2 border-blue">
                     <img
                         src="/kazak.png"
                         alt="Cultural heritage protection"
