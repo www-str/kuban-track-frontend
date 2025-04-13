@@ -58,6 +58,7 @@ interface IAction {
     getProfile: () => Promise<profileType>;
     getRubrics: () => Promise<rubricsType[]>;
     getPlaces: ({ city, query }: findPlaceType) => Promise<placeType[]>;
+    getHalalPlaces: ({ city, query }: findPlaceType) => Promise<placeType[]>;
     getAchievements: () => Promise<achievementType[]>;
     setAchievement: (id: string) => Promise<string>;
 }

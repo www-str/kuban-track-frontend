@@ -4,8 +4,10 @@ import { placeType, rubricsType } from "../store/types";
 import Button from "../components/ui/Button";
 import { cities } from "../utils/data";
 
+const HALAL_VAR = 'Халяль ресторан';
+
 const EventsPage = () => {
-  const { isAuth, getPlaces, getRubrics, setAchievement } = useStore();
+  const { isAuth, getPlaces, getRubrics, setAchievement, getHalalPlaces } = useStore();
 
   const [events, setEvents] = useState<placeType[]>([]);
   const [rubrics, setRubrics] = useState<rubricsType[]>([]);
@@ -29,7 +31,7 @@ const EventsPage = () => {
 
   const fetchEvents = async () => {
     if (city && query) {
-      const res = await getPlaces({ city, query });
+      const res = query === HALAL_VAR ? await getHalalPlaces({ city, query }) : await getPlaces({ city, query });
       setEvents(res);
     }
   }
@@ -42,7 +44,7 @@ const EventsPage = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-light px-6 lg:px-14 py-30 md:py-40 flex flex-col gap-12" id="culturalNav">
+    <div className="w-full min-h-screen bg-light px-6 lg:px-14 py-30 md:py-40 flex flex-col gap-12" >
       <h3 className='font-bold text-4xl'>Events</h3>
 
       <div className="flex flex-col gap-5 border border-blue rounded-2xl p-12">
@@ -58,6 +60,12 @@ const EventsPage = () => {
                 {rubric.title}
               </Button>
             ))}
+            <Button
+              onclick={() => setQuery(HALAL_VAR)}
+              classname={`${query === HALAL_VAR ? "opacity-90" : ""} w-full sm:w-fit`}
+            >
+              Halal
+            </Button>
           </div>
         ) : (
           <p>loadinng yooo</p>
@@ -87,7 +95,7 @@ const EventsPage = () => {
             <h4 className="text-2xl font-semibold text-dark">{event.name}</h4>
             <p className="text-blue text-lg overflow-hidden">{event.purpose_name}</p>
             <p className="text-blue text-lg overflow-hidden">{event.address_name}</p>
-            <Button onclick={() => handleVisited(event.id)}>Viseted</Button>
+            <Button onclick={() => handleVisited(event.id)}>Visited</Button>
           </div>
         ))}
       </div>

@@ -81,6 +81,21 @@ export const useStore = create<useStoreType>((set, get) => ({
             console.error(e);
         }
     },
+    getHalalPlaces: async ({ city, query }) => {
+        try {
+            const res = await axios.get('/find_branch', {
+                params: {
+                    city,
+                    q: query,
+                }
+            });
+            if (res.data.ok) {
+                return res.data.ok;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    },
     getAchievements: async () => {
         try {
             const res = await axios.get('/achievements');
