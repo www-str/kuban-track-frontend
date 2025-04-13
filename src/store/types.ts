@@ -19,7 +19,7 @@ export type profileType = {
     }[];
 }
 
-type placeType = {
+export type placeType = {
     address_comment: string;
     address_name: string;
     building_name: string;

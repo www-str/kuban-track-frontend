@@ -1,13 +1,13 @@
 import Slider from "react-slick";
 import PlaceItem from "./PlaceItem";
 
-export type placeType = {
+export type sliderPlaceType = {
     image: string;
     title: string;
     location: string;
 }
 
-const places: placeType[] = [
+const places: sliderPlaceType[] = [
     {
         image: "/rose-farm.png",
         title: "Rose Khutor",

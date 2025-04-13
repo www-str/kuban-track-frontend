@@ -1,123 +1,85 @@
-import { useEffect } from "react";
-
-const categoriesData = [
-  {
-    category: "Отели",
-    cards: [
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.5 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.5 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.5 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.5 },
-    ],
-  },
-  {
-    category: "Рестораны",
-    cards: [
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.2 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.2 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.2 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.2 },
-    ],
-  },
-  {
-    category: "Караоке",
-    cards: [
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.0 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.0 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.0 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.0 },
-    ],
-  },
-  {
-    category: "Казино",
-    cards: [
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.8 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.8 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.8 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 4.8 },
-    ],
-  },
-  {
-    category: "Бары",
-    cards: [
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.4 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.4 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.4 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.4 },
-    ],
-  },
-  {
-    category: "Ипподромы",
-    cards: [
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.7 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.7 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.7 },
-      { title: "Kina Mountain", location: "Cambodia", rating: 3.7 },
-    ],
-  },
-];
-
+import { useEffect, useState } from "react";
+import { useStore } from "../store/useStore";
+import { placeType } from "../store/types";
+import Button from "../components/ui/Button";
+import { cities } from "../utils/data";
 
 const EventsPage = () => {
+  const { getPlaces, getRubrics } = useStore();
+
+  const [events, setEvents] = useState<placeType[]>([]);
+  const [rubrics, setRubrics] = useState<string[]>([]);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const [city, setCity] = useState<string>(urlParams.get('city') || '');
+  const [query, setQuery] = useState('');
+
+  const fetchRubrics = async () => {
+    const res = await getRubrics();
+    setRubrics(res);
+  }
+
+  useEffect(() => {
+    fetchRubrics();
+  }, [])
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
+  const fetchEvents = async () => {
+    if (city && query) {
+      const res = await getPlaces({ city, query });
+      setEvents(res);
+    }
+  }
 
   return (
-    <div className="w-full min-h-screen bg-light px-4 py-16 flex justify-center items-start" id="culturalNav">
-      <div className="max-w-4xl w-full bg-white rounded-2xl shadow-lg p-8 md:p-12 mt-16">
-        {categoriesData.map((categoryData, index) => (
-          <div key={index} className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{categoryData.category}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {categoryData.cards.map((card, cardIndex) => (
-                <div
-                  key={cardIndex}
-                  className="bg-white rounded-2xl overflow-hidden shadow-md"
-                >
-                  <div className="p-2">
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-sm font-semibold">{card.title}</h3>
-                      <div className="bg-white bg-opacity-70 backdrop-blur-sm text-xs rounded-full px-2 py-0.5 flex items-center space-x-1">
-                        <svg
-                          className="w-3 h-3 text-yellow-500"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M9.049 2.929c.3-.921 1.603-.921 1.903 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.835 2.03a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.835-2.03a1 1 0 00-1.175 0l-2.835 2.03c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.95-.69l1.07-3.292z" />
-                        </svg>
-                        <span>{card.rating}</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-600 text-xs flex items-center space-x-1">
-                      <svg
-                        className="w-3 h-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
-                      {card.location}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+    <div className="w-full min-h-screen bg-light px-6 lg:px-14 py-40 flex flex-col gap-12" id="culturalNav">
+      <h3 className='font-bold text-4xl'>Events</h3>
+
+      <div className="flex flex-col gap-5 border border-blue rounded-2xl p-12">
+        <p className="text-2xl text-center font-semibold">Rubrics</p>
+        {rubrics ? (
+          <div className="flex items-center justify-center flex-wrap gap-2">
+            {rubrics.map((rubric, index) => (
+              <Button
+                key={`${rubric}-${index}`}
+                onclick={() => setQuery(rubric)}
+                classname={`${query === rubric ? "opacity-90" : ""} w-full sm:w-fit`}
+              >
+                {rubric}
+              </Button>
+            ))}
+          </div>
+        ) : (
+          <p>loadinng yooo</p>
+        )}
+
+        <span className="w-full h-px bg-blue"></span>
+        <p className="text-2xl text-center font-semibold">Cities</p>
+
+        <div className="flex items-center justify-center flex-wrap gap-2">
+          {cities.map((item, index) => (
+            <Button
+            key={`${item}-${index}`}
+            onclick={() => setCity(item)}
+            classname={`${city === item ? "opacity-90" : ""} w-full sm:w-fit`}
+            >
+              {item}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      <Button onclick={fetchEvents}>Search Events</Button>
+
+      <div className="flex flex-col gap-12">
+        {events && events.map(event => (
+          <div key={event.id} className="w-full flex flex-col gap-6 border border-blue50 p-10 rounded-4xl">
+            <h4 className="text-2xl font-semibold text-dark">{event.name}</h4>
+            <p className="text-blue text-lg overflow-hidden">{event.purpose_name}</p>
+            <p className="text-blue text-lg overflow-hidden">{event.address_name}</p>
           </div>
         ))}
       </div>

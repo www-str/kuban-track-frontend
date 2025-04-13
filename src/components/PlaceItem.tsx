@@ -1,8 +1,8 @@
-import { placeType } from "./PopularSlider";
+import { sliderPlaceType } from "./PopularSlider";
 
 
 interface IPlaceItem {
-    place: placeType;
+    place: sliderPlaceType;
 }
 
 const PlaceItem: React.FC<IPlaceItem> = ({ place }) => {
