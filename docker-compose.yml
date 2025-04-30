@@ -2,7 +2,7 @@ services:
   web:
     build: .
     ports:
-      - "80:80"
+      - "81:81"
     volumes:
       - .:/app
       - /app/node_modules

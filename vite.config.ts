@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     host: true,
-    port: 80,
+    port: 81,
     allowedHosts: ["meowmur.ru"],
     watch: {
       usePolling: true,
